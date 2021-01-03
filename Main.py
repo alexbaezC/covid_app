@@ -83,3 +83,4 @@ while(True):
         t = PrettyTable(["Country", "Confirmed", "Active", "Deaths", "Recovered"])
         data_check = covid.get_status_by_country_name(country_name)
         t.add_row([country_name, data_check["confirmed"], data_check["active"], data_check["deaths"], data_check["recovered"]])
+        print(t)
