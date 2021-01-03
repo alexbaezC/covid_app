@@ -48,29 +48,36 @@ countries = covid.list_countries()
 num = len(countries)
 count = 0
 
-data = covid.get_status_by_country_name(name)
+try:
+    data = covid.get_status_by_country_name(name)
+except:
+    data = covid.get_status_by_country_name(js['country_code'])
+
 table.add_row([name, data["confirmed"], data["active"], data["deaths"], data["recovered"]])
 
 print(table)
 command_list = PrettyTable(["Commands", "Function"])
 command_list.add_row(["help", "Prints the list of commands"])
-command_list.add_row(["end", "Quits the program"])
-command_list.add_row(["here", "Prints Covid informarion in the current country"])
-command_list.add_row(["countries", "Prints a list of countries starting"])
+command_list.add_row(["quit", "Quits the program"])
+command_list.add_row(["info", "Prints Covid informarion in the current country"])
+command_list.add_row(["list", "Prints a list of countries starting"])
 command_list.add_row(["check", "Presents Covid 19 information about a country"])
 print(command_list)
 while(True):
     command = input("> ")
     if command == "help":
         print(command_list)
-    if command == "here":
+    
+    if command == "quit":
+        break 
+
+    if command == "info":
         h = PrettyTable(["Country", "Confirmed", "Active", "Deaths", "Recovered"])
         data = covid.get_status_by_country_name(name)
         h.add_row([name, data["confirmed"], data["active"], data["deaths"], data["recovered"]])
         print(h)
-    if command == "end":
-        break 
-    if command == "countries":
+    
+    if command == "list":
         country_name = input("Countries that start with: ")
         t = PrettyTable(["Country"])
         for c in countries:
@@ -78,6 +85,7 @@ while(True):
                 t.add_row([c['name']])
         
         print(t)
+        
     if command == "check":
         country_name = input("Country: ")
         t = PrettyTable(["Country", "Confirmed", "Active", "Deaths", "Recovered"])
