@@ -39,7 +39,7 @@ def hello():
     except:
         pass
     print('here')
-    return render_template("index2.html", country=strs, country_code=js['country_code'], 
+    return render_template("index.html", country=strs, country_code=js['country_code'], 
     city=js['city'], cases=data["confirmed"], a_cases=data["active"], death_num=data["deaths"], 
     recov=data["recovered"], condition=condition, info_url=c['source_website'][count])
 

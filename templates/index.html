@@ -11,20 +11,66 @@
                 margin-left: auto;
                 margin-right: auto;
             }
-            th {border-radius: 100px;
+            th {
+                border-radius: 100px;
                 border: 2px solid rgb(92, 139, 177);
                 padding: 35px; 
                 width: 200px;
                 height: 15px; 
                 color: white;
+              
             }
             tr {
                 margin-bottom: 50px;
-            }
-        </style>
-    </head>
 
+            }
+
+            div { 
+                margin-top: 20px;
+            }
+
+            .button {
+                border: none;
+                color: white;
+                padding: 16px 32px;
+                text-align: center;
+                text-decoration: none;
+                display: block;
+                font-size: 16px;
+                margin: 0 auto;
+                transition-duration: 0.4s;
+                cursor: pointer;
+            }
+
+            .button1 {
+                border-radius: 75px;
+                background-color: rgb(92, 139, 177);
+                color: white;
+                font-weight: bold;
+                border: 2px solid #a4b8a4;
+                text-align: center;
+                margin-bottom: 20px;
+            }
+
+            ul {
+                margin-left: auto;
+                margin-right: auto;
+                text-align: right;
+                padding-top: 10px;
+                padding-bottom: 20px;
+                width: 100%;
+            }
+
+        </style>
+
+    </head>
+   
     <body>
+        <ul class="navbar" style="background: url(https://img.wallpapersafari.com/desktop/1920/1080/41/41/vIdSZT.jpg);">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+            <input type="text" placeholder="  Search" name="search" size="25" style="border-radius: 10px; height: 25px; margin-right: 5px;" autofocus>
+            <button type="submit" size="30" style="border-radius: 7px; height: 25px; background-color: rgb(24, 108, 177); color: white; margin-right: 15px;"><i class="fa fa-search"></i></button>
+        </ul>
         <h1>{{country}} ({{country_code}})</h1>
         <p>City of ISP: {{city}} </p>
         <table style="width:75%" class= "center" cellpadding="15" cellspacing="30">
@@ -38,6 +84,20 @@
             </tr>
             
         </table>
+     
+        {% block content %}
+            {% if condition %}
+                <div>
+                    <a href="{{ info_url }}" class="center" style=" text-decoration: none;">
+                        <button class = "button button1">LEARN MORE about Covid-19 vacinations in {{country}}</button>
+                    </a>
+                </div>
+            {% else %}
+                <div>
+                    <p>There is no information about vacination in {{country}}</p>
+                </div>
+            {% endif %}
+        {% endblock content %}
         
     </body>
     
