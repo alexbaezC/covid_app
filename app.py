@@ -38,10 +38,28 @@ def hello():
         s_url = c['source_website'][count]
     except:
         pass
-    print('here')
+    
     return render_template("index.html", country=strs, country_code=js['country_code'], 
     city=js['city'], cases=data["confirmed"], a_cases=data["active"], death_num=data["deaths"], 
-    recov=data["recovered"], condition=condition, info_url=c['source_website'][count])
+    recov=data["recovered"], condition=condition, info_url=s_url)
+
+@app.route('/all')
+def all_countries():
+    covid = Covid()
+    #tabl = ""
+    countries = covid.list_countries()
+    
+    headings = ("Country", "Confirmed Cases", "Active Cases", "Deaths", "Recovered")
+    info = []
+    for c in countries:
+        print(c)
+        data = covid.get_status_by_country_name(c['name'])
+        row = (c['name'], str(data["confirmed"]), str(data["active"]), str(data["deaths"]), str(data["recovered"]))
+        info.append(row)
+        print(row)
+        #tabl = tabl + row
+
+    return render_template("all.html", info=info)
 
 @app.route('/redi')
 def redirect_to_data():

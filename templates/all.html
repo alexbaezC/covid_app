@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Covid App</title>
+        <style>
+            body { background: url(https://img.wallpapersafari.com/desktop/1920/1080/9/10/Qv8FcO.jpg); }
+            h1   {color:white; text-align: center;}
+            p    {color: white; text-align: center;}
+            
+            table.center {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            th {
+                border-radius: 100px;
+                border: 2px solid rgb(92, 139, 177);
+                padding: 35px; 
+                width: 200px;
+                height: 15px; 
+                color: white;
+              
+            }
+            tr {
+                margin-bottom: 50px;
+
+            }
+
+            div { 
+                margin-top: 20px;
+            }
+
+            .button {
+                border: none;
+                color: white;
+                padding: 16px 32px;
+                text-align: center;
+                text-decoration: none;
+                display: block;
+                font-size: 16px;
+                margin: 0 auto;
+                transition-duration: 0.4s;
+                cursor: pointer;
+            }
+
+            .button1 {
+                border-radius: 75px;
+                background-color: rgb(92, 139, 177);
+                color: white;
+                font-weight: bold;
+                border: 2px solid #a4b8a4;
+                text-align: center;
+                margin-bottom: 20px;
+            }
+
+            ul {
+                margin-left: auto;
+                margin-right: auto;
+                text-align: right;
+                padding-top: 10px;
+                padding-bottom: 20px;
+                width: 100%;
+            }
+
+        </style>
+
+    </head>
+   
+    <body>
+        <ul class="navbar" style="background: url(https://img.wallpapersafari.com/desktop/1920/1080/41/41/vIdSZT.jpg);">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+            <input type="text" placeholder="  Search" name="search" size="25" style="border-radius: 10px; height: 25px; margin-right: 5px;" autofocus>
+            <button type="submit" size="30" style="border-radius: 7px; height: 25px; background-color: rgb(24, 108, 177); color: white; margin-right: 15px;"><i class="fa fa-search"></i></button>
+        </ul>
+        
+        <table class= "center">
+            <tr>
+                <th>Countries</th>
+                <th>Confirmed Cases</th>
+                <th>Active Cases</th>
+                <th>Deaths</th>
+                <th>Recovered</th>
+            </tr>
+            
+            {% block content %}
+                {% for inf in info %}
+                    <tr>
+                        {% for i in inf %}
+                            <th>{{i}}</th>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            {% endblock content %}
+        </table>
+        
+    </body>
+    
+
+</html>
