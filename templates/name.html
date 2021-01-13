@@ -71,28 +71,32 @@
             <input type="text" placeholder="  Search" name="search" size="25" style="border-radius: 10px; height: 25px; margin-right: 5px;" autofocus>
             <button type="submit" size="30" style="border-radius: 7px; height: 25px; background-color: rgb(24, 108, 177); color: white; margin-right: 15px;"><i class="fa fa-search"></i></button>
         </ul>
-        
-        <table class= "center">
+        <h1>{{country}}</h1>>
+        <table style="width:75%" class= "center" cellpadding="15" cellspacing="30">
             <tr>
-                <th>Countries</th>
-                <th>Confirmed Cases</th>
-                <th>Active Cases</th>
-                <th>Deaths</th>
-                <th>Recovered</th>
+                <th>Confirmed Cases: {{cases}}</th>
+                <th>Active Cases: {{a_cases}}</th>
+            </tr>
+            <tr>
+                <th>Deaths: {{death_num}}</th>
+                <th>Recovered: {{recov}}</th>
             </tr>
             
-            {% block content %}
-                {% for inf in info %}
-                    <tr>
-                        <div>
-                            <a href="/{{inf}}" class="center" style=" text-decoration: none;">
-                                <button class = "button button1">{{inf}}</button>
-                            </a>
-                        </div>
-                    </tr>
-                {% endfor %}
-            {% endblock content %}
         </table>
+     
+        {% block content %}
+            {% if condition %}
+                <div>
+                    <a href="{{ info_url }}" class="center" style=" text-decoration: none;">
+                        <button class = "button button1">LEARN MORE about Covid-19 vacinations in {{country}}</button>
+                    </a>
+                </div>
+            {% else %}
+                <div>
+                    <p>There is no information about vacination in {{country}}</p>
+                </div>
+            {% endif %}
+        {% endblock content %}
         
     </body>
     

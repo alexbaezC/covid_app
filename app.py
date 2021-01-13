@@ -53,8 +53,9 @@ def all_countries():
     info = []
     for c in countries:
         print(c)
-        data = covid.get_status_by_country_name(c['name'])
-        row = (c['name'], str(data["confirmed"]), str(data["active"]), str(data["deaths"]), str(data["recovered"]))
+        #data = covid.get_status_by_country_name(c['name'])
+        # row = (c['name'], str(data["confirmed"]), str(data["active"]), str(data["deaths"]), str(data["recovered"]))
+        row = c['name']
         info.append(row)
         print(row)
         #tabl = tabl + row
@@ -68,6 +69,52 @@ def redirect_to_data():
 
 @app.route('/<name>')
 def hello_name(name):
+    
+    covid = Covid()
+    try:
+        data = covid.get_status_by_country_name(name)
+    except:
+        pass
+    
+    condition = False
+    vac_url = 'https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/vaccinations/locations.csv'
+    s = requests.get(vac_url).content
+    c = pd.read_csv(io.StringIO(s.decode('utf-8')))
+    count = 0
+    if name == 'US':
+        for f in c['location']:
+            if (f == 'United States'):
+                condition = True
+                break
+            count += 1
+        
+        try:
+            global s_url 
+            s_url = c['source_website'][count]
+        except:
+            pass
+
+        return render_template("name.html", country='United States', cases=data["confirmed"], a_cases=data["active"], death_num=data["deaths"], 
+        recov=data["recovered"], condition=condition, info_url=s_url)
+    else:
+        for f in c['location']:
+            if (f == name):
+                condition = True
+                break
+            count += 1
+        
+        try:
+            #global s_url 
+            s_url = c['source_website'][count]
+        except:
+            pass
+
+        return render_template("name.html", country=name, cases=data["confirmed"], a_cases=data["active"], death_num=data["deaths"], 
+        recov=data["recovered"], condition=condition, info_url=s_url)
+   
+    
+    
+    
     return "Hello {}!".format(name)
 
 if __name__ == '__main__':
