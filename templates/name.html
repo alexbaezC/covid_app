@@ -52,13 +52,75 @@
                 margin-bottom: 20px;
             }
 
-            ul {
-                margin-left: auto;
-                margin-right: auto;
-                text-align: right;
-                padding-top: 10px;
-                padding-bottom: 20px;
-                width: 100%;
+            .navbar {
+                overflow: hidden;
+            }
+
+            .navbar a {
+                float: left;
+                color: white;
+                background-color: #222020;
+                font-weight: bold;
+                display: block;
+                text-decoration: none;
+                text-align: center;
+                padding: 14px 16px;
+                font-size: 17px;
+            }
+
+            .navbar a:hover {
+                background-color: rgb(56, 58, 61);
+                color: white;
+            }
+
+            .navbar a.active {
+                background-color: rgb(163, 196, 228);
+                color: white;
+            }
+
+            .navbar .search-container {
+                float: right;
+                margin-bottom: 20px;
+            }
+
+            .navbar input[type=text] {
+                padding: 6px;
+                margin-top: 8px;
+                font-size: 17px;
+                border: none;
+            }
+
+            .navbar .search-container button {
+                float: right;
+                padding: 6px 10px;
+                margin-top: 8px;
+                margin-right: 14px;
+                margin-bottom: 15px;
+                background: #ddd;
+                font-size: 17px;
+                border: none;
+                cursor: pointer;
+            }
+
+            .navbar .search-container button:hover {
+                background: rgb(167, 197, 228);
+            }
+
+            @media screen and (max-width: 600px) {
+                .navbar .search-container {
+                    float: none;
+                }
+                .navbar a, .navbar input[type=text], .navbar .search-container button {
+                    float: none;
+                    display: block;
+                    text-align: left;
+                    width: 100%;
+                    margin: 0;
+                    padding: 14px;
+                }
+                .navbar input[type=text] {
+                    border: 1px solid #ccc;
+                }
             }
 
         </style>
@@ -68,8 +130,11 @@
     <body>
         <ul class="navbar" style="background: url(https://img.wallpapersafari.com/desktop/1920/1080/41/41/vIdSZT.jpg);">
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-            <input type="text" placeholder="  Search" name="search" size="25" style="border-radius: 10px; height: 25px; margin-right: 5px;" autofocus>
-            <button type="submit" size="30" style="border-radius: 7px; height: 25px; background-color: rgb(24, 108, 177); color: white; margin-right: 15px;"><i class="fa fa-search"></i></button>
+            <a href="/">HOME</a>
+            <div class="search-container">
+                    <input type="text" placeholder="  Search" name="search" size="25" style="border-radius: 10px; height: 25px; margin-right: 5px;" autofocus>
+                    <button type="submit" size="30" style="border-radius: 7px; height: 35px; background-color: rgb(24, 108, 177); color: white; margin-right: 15px;"><i class="fa fa-search"></i></button>
+            </div>
         </ul>
         <h1>{{country}}</h1>>
         <table style="width:75%" class= "center" cellpadding="15" cellspacing="30">

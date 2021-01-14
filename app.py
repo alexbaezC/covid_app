@@ -51,14 +51,32 @@ def all_countries():
     
     headings = ("Country", "Confirmed Cases", "Active Cases", "Deaths", "Recovered")
     info = []
+    row = []
+    count = 0
     for c in countries:
-        print(c)
-        #data = covid.get_status_by_country_name(c['name'])
-        # row = (c['name'], str(data["confirmed"]), str(data["active"]), str(data["deaths"]), str(data["recovered"]))
-        row = c['name']
+        if count != 0:
+            if count % 4 == 0:
+                info.append(row)
+                row = []
+
+            row.append(c['name'])
+        else:
+            row.append(c['name'])
+        
+        count += 1
+    
+    if len(row) != 0:
         info.append(row)
-        print(row)
-        #tabl = tabl + row
+        row = []
+
+    # for c in countries:
+    #     print(c)
+    #     #data = covid.get_status_by_country_name(c['name'])
+    #     # row = (c['name'], str(data["confirmed"]), str(data["active"]), str(data["deaths"]), str(data["recovered"]))
+    #     row = c['name']
+    #     info.append(row)
+    #     print(row)
+    #     #tabl = tabl + row
 
     return render_template("all.html", info=info)
 
