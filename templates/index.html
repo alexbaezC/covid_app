@@ -117,7 +117,7 @@
                     float: none;
                     display: block;
                     text-align: left;
-                    width: 100%;
+                    width: 90%;
                     margin: 0;
                     padding: 14px;
                 }
@@ -135,8 +135,8 @@
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
             <a href="/all">LIST OF COUNTRIES</a>
             <div class="search-container">
-                    <input type="text" placeholder="  Search" name="search" size="25" style="border-radius: 10px; height: 25px; margin-right: 5px;" autofocus>
-                    <button type="submit" size="30" style="border-radius: 7px; height: 40px; background-color: rgb(24, 108, 177); color: white; margin-right: 15px;"><i class="fa fa-search"></i></button>
+                    <input id="searchbar" type="text" placeholder="  Search" name="search" size="25" style="border-radius: 10px; height: 25px; margin-right: 5px;" autofocus>
+                    <button type="submit" onclick="redirect()" size="30" style="border-radius: 7px; height: 40px; padding-bottom: 30px; background-color: rgb(24, 108, 177); color: white; margin-right: 15px;"><i class="fa fa-search"></i></button>
             </div>
         </ul>
         <h1>{{country}} ({{country_code}})</h1>
@@ -167,6 +167,14 @@
             {% endif %}
         {% endblock content %}
         
+        <script>
+            function redirect() {
+                var search = document.getElementById("searchbar").value;
+                var url = "http://127.0.0.1:5000/" + search;
+                location.replace(url);
+            }
+        </script>
+
     </body>
     
 
