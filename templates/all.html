@@ -128,8 +128,8 @@
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
             <a href="/">HOME</a>
             <div class="search-container">
-                    <input type="text" placeholder="  Search" name="search" size="25" style="border-radius: 10px; height: 25px; margin-right: 5px;" autofocus>
-                    <button type="submit" size="30" style="border-radius: 7px; height: 35px; background-color: rgb(24, 108, 177); color: white; margin-right: 15px;"><i class="fa fa-search"></i></button>
+                    <input id="searchbar" type="text" placeholder="  Search" name="search" size="25" style="border-radius: 10px; height: 25px; margin-right: 5px;" autofocus>
+                    <button type="submit" onclick="redirect()" size="30" style="border-radius: 7px; height: 35px; background-color: rgb(24, 108, 177); color: white; margin-right: 15px;"><i class="fa fa-search"></i></button>
             </div>
         </ul>
         
@@ -152,6 +152,14 @@
                 {% endfor %}
             {% endblock content %}
         </table>
+
+        <script>
+            function redirect() {
+                var search = document.getElementById("searchbar").value;
+                var url = "http://127.0.0.1:5000/" + search;
+                location.replace(url);
+            }
+        </script>
         
     </body>
     
