@@ -46,10 +46,9 @@ def hello():
 @app.route('/all')
 def all_countries():
     covid = Covid()
-    #tabl = ""
     countries = covid.list_countries()
     
-    headings = ("Country", "Confirmed Cases", "Active Cases", "Deaths", "Recovered")
+    
     info = []
     row = []
     count = 0
@@ -68,15 +67,6 @@ def all_countries():
     if len(row) != 0:
         info.append(row)
         row = []
-
-    # for c in countries:
-    #     print(c)
-    #     #data = covid.get_status_by_country_name(c['name'])
-    #     # row = (c['name'], str(data["confirmed"]), str(data["active"]), str(data["deaths"]), str(data["recovered"]))
-    #     row = c['name']
-    #     info.append(row)
-    #     print(row)
-    #     #tabl = tabl + row
 
     return render_template("all.html", info=info)
 
